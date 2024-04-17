@@ -1,10 +1,22 @@
--- EXAMPLE 
+-- EXAMPLE
 local on_attach = require("nvchad.configs.lspconfig").on_attach
 local on_init = require("nvchad.configs.lspconfig").on_init
 local capabilities = require("nvchad.configs.lspconfig").capabilities
 
 local lspconfig = require "lspconfig"
-local servers = { "html", "cssls" }
+local servers = {
+  "html",
+  "cssls",
+  "tsserver",
+  "clangd",
+  "gopls",
+  "gradle_ls",
+  "solidity_ls_nomicfoundation",
+  "tailwindcss",
+  "pyright",
+  "eslint",
+  "jsonls",
+}
 
 -- lsps with default config
 for _, lsp in ipairs(servers) do
@@ -20,4 +32,18 @@ lspconfig.tsserver.setup {
   on_attach = on_attach,
   on_init = on_init,
   capabilities = capabilities,
+}
+
+lspconfig.tailwindcss.setup {
+  settings = {
+
+    tailwindCSS = {
+      experimental = {
+        classRegex = {
+          { "cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]" },
+          { "cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)" },
+        },
+      },
+    },
+  },
 }

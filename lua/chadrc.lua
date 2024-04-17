@@ -5,7 +5,18 @@
 local M = {}
 
 M.ui = {
-	theme = "onedark",
+	theme = "poimandres",
+  transparency = true,
+  nvdash = {
+    load_on_startup = true,
+  },
+  statusline = {
+    theme = "minimal",
+  },
+  cmp = {
+    style = "default",
+    icons = true,
+  },
 
 	-- hl_override = {
 	-- 	Comment = { italic = true },
