@@ -70,8 +70,20 @@ return {
     },
   },
   {
-    "Exafunction/codeium.vim",
+    "Exafunction/codeium.nvim",
     lazy = false,
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "hrsh7th/nvim-cmp",
+    },
+    opts = function()
+      return require "nvchad.configs.cmp"
+    end,
+    config = function(_, opts)
+      table.insert(opts.sources, 1, { name = "codeium" })
+      require("cmp").setup(opts)
+      require("codeium").setup {}
+    end,
   },
 
   {
@@ -143,4 +155,5 @@ return {
     event = "VeryLazy",
     opts = {},
   },
+  { "wakatime/vim-wakatime", lazy = false },
 }

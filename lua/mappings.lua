@@ -19,6 +19,7 @@ map("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move line down" })
 map("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move line up" })
 
 map({ "n", "v" }, "<leader>fe", "<cmd>EslintFixAll<cr>", { desc = "Eslint fix all" })
+map("x", "p", 'p:let @+=@0<CR>:let @"=@0<CR>', { desc = "Dont copy replaced text", })
 
 -- Harpoon
 

@@ -7,6 +7,23 @@ local options = {
     typescript = { "prettier" },
     javascriptreact = { "prettier" },
     typescriptreact = { "prettier" },
+    json = { "prettier" },
+    jsonc = { "prettier" },
+  },
+  formatters = {
+    injected = {
+      options = {
+        lang_to_formatters = {
+          json = { "prettier" },
+          jsonc = { "prettier" },
+        },
+      },
+    },
+  },
+
+  ft_parsers = {
+    json = "json",
+    jsonc = "json",
   },
 
   -- format_on_save = {
