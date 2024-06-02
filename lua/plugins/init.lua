@@ -156,4 +156,9 @@ return {
     opts = {},
   },
   { "wakatime/vim-wakatime", lazy = false },
+  {
+    "laytan/cloak.nvim",
+    event = "VeryLazy",
+    opts = {},
+  },
 }
