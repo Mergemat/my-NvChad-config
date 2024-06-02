@@ -18,6 +18,8 @@ map("n", "N", "Nzzzv")
 map("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move line down" })
 map("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move line up" })
 
+map("i", "<C-j>", vim.lsp.buf.signature_help)
+
 map({ "n", "v" }, "<leader>fe", "<cmd>EslintFixAll<cr>", { desc = "Eslint fix all" })
 map("x", "p", 'p:let @+=@0<CR>:let @"=@0<CR>', { desc = "Dont copy replaced text" })
 map("n", "<leader>lf", vim.diagnostic.open_float, { desc = "lsp floating diagnostics" })
