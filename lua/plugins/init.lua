@@ -70,19 +70,14 @@ return {
     },
   },
   {
-    "Exafunction/codeium.nvim",
-    lazy = false,
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "hrsh7th/nvim-cmp",
-    },
-    opts = function()
-      return require "nvchad.configs.cmp"
-    end,
-    config = function(_, opts)
-      table.insert(opts.sources, 1, { name = "codeium" })
-      require("cmp").setup(opts)
-      require("codeium").setup {}
+    "supermaven-inc/supermaven-nvim",
+    event = "VeryLazy",
+    config = function()
+      require("supermaven-nvim").setup {
+        keymaps = {
+          accept_suggestion = "<C-e>",
+        },
+      }
     end,
   },
 
