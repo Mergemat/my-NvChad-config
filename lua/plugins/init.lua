@@ -69,33 +69,7 @@ return {
       },
     },
   },
-  {
-    "supermaven-inc/supermaven-nvim",
-    event = "VeryLazy",
-    config = function()
-      require("supermaven-nvim").setup {
-        keymaps = {
-          accept_suggestion = "<C-e>",
-        },
-      }
-    end,
-  },
-
-  {
-    "mbbill/undotree",
-    lazy = false,
-  },
-
-  {
-    "ThePrimeagen/harpoon",
-    branch = "harpoon2",
-    dependencies = { "nvim-lua/plenary.nvim" },
-    config = function()
-      local harpoon = require "harpoon"
-      harpoon:setup {}
-    end,
-  },
-
+  --
   {
     "nvim-treesitter/nvim-treesitter-context",
     lazy = false,
@@ -121,39 +95,20 @@ return {
       }
     end,
   },
+  --
   {
     "folke/trouble.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     lazy = false,
   },
-  {
-    "folke/trouble.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-  },
+  --
   {
     "kevinhwang91/nvim-bqf",
     lazy = false,
   },
-  {
-    "max397574/better-escape.nvim",
-    event = "InsertEnter",
-    config = function()
-      require("better_escape").setup()
-    end,
-  },
+  --
   {
     "nvim-tree/nvim-tree.lua",
     opts = overrides.nvimtree,
-  },
-  {
-    "folke/flash.nvim",
-    event = "VeryLazy",
-    opts = {},
-  },
-  { "wakatime/vim-wakatime", lazy = false },
-  {
-    "laytan/cloak.nvim",
-    event = "VeryLazy",
-    opts = {},
   },
 }
