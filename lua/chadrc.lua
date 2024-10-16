@@ -15,15 +15,52 @@ M.ui = {
     theme = "minimal",
   },
   cmp = {
-    style = "default",
-    icons = true,
-    sources = {
-      { name = "codeium" },
+    format_colors = {
+      tailwind = true,
     },
+    icons_left = true,
+
+    icons = true,
   },
-  nvdash = {
-    load_on_startup = true,
+  tabufline = {
+    order = { "treeOffset", "buffers" },
   },
+}
+
+M.nvdash = {
+  load_on_startup = true,
+}
+
+M.mason = {
+  pkgs = {
+
+    "lua-language-server",
+    "stylua",
+    "pyright",
+    -- web dev stuff
+    "css-lsp",
+    "html-lsp",
+    "typescript-language-server",
+    "eslint_d",
+    "oxlint",
+    "deno",
+    "prettier",
+    "biome",
+    "solhint",
+    "solidity-ls",
+    "nomicfoundation-solidity-language-server",
+    "eslint-lsp",
+    "jsonls",
+    "prisma-language-server",
+
+    -- c/cpp stuff
+    "clangd",
+    "clang-format",
+  },
+}
+
+M.colorify = {
+  enabled = false,
 }
 
 return M

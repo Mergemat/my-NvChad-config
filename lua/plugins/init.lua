@@ -4,9 +4,7 @@ return {
   {
     "stevearc/conform.nvim",
     -- event = 'BufWritePre', -- uncomment for format on save
-    config = function()
-      require "configs.conform"
-    end,
+    opts = require "configs.conform",
   },
 
   -- These are some examples, uncomment them if you want to see them work!
@@ -16,36 +14,6 @@ return {
       require("nvchad.configs.lspconfig").defaults()
       require "configs.lspconfig"
     end,
-  },
-  --
-  {
-    "williamboman/mason.nvim",
-    opts = {
-      ensure_installed = {
-        "lua-language-server",
-        "stylua",
-        "pyright",
-        -- web dev stuff
-        "css-lsp",
-        "html-lsp",
-        "typescript-language-server",
-        "eslint_d",
-        "oxlint",
-        "deno",
-        "prettier",
-        "biome",
-        "solhint",
-        "solidity-ls",
-        "nomicfoundation-solidity-language-server",
-        "eslint-lsp",
-        "jsonls",
-        "prisma-language-server",
-
-        -- c/cpp stuff
-        "clangd",
-        "clang-format",
-      },
-    },
   },
   --
   {

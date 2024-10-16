@@ -14,3 +14,4 @@ vim.api.nvim_create_autocmd("TextYankPost", {
     vim.highlight.on_yank { higroup = "IncSearch", timeout = 100 }
   end,
 })
+vim.api.nvim_set_hl(0, "CmpItemKindSupermaven", { fg = "#6CC644" })
