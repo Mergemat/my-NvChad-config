@@ -4,15 +4,10 @@ return {
     event = "VeryLazy",
     config = function()
       require("supermaven-nvim").setup {
-        disable_inline_completion = true,
+        keymaps = {
+          accept_suggestion = "<C-e>",
+        },
       }
-    end,
-  },
-  {
-    "hrsh7th/nvim-cmp",
-    opts = function(_, opts)
-      table.insert(opts.sources, 1, { name = "supermaven" })
-      return opts
     end,
   },
 
