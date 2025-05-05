@@ -1,3 +1,4 @@
+require("nvchad.configs.lspconfig").defaults()
 local map = vim.keymap.set
 
 -- EXAMPLE
@@ -18,50 +19,32 @@ local function on_attach(_, bufnr)
   map("n", "gr", vim.lsp.buf.references, opts "Show references")
 end
 
-local on_init = require("nvchad.configs.lspconfig").on_init
-local capabilities = require("nvchad.configs.lspconfig").capabilities
-
-local lspconfig = require "lspconfig"
 local servers = {
-  "html",
-  "cssls",
-  "ts_ls",
-  "clangd",
-  "gopls",
-  "gradle_ls",
-  "solidity_ls_nomicfoundation",
-  "tailwindcss",
-  "pyright",
-  "eslint",
-  "jsonls",
-}
-
--- lsps with default config
-for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup {
-    on_attach = on_attach,
-    on_init = on_init,
-    capabilities = capabilities,
-  }
-end
-
--- typescript
-lspconfig.ts_ls.setup {
-  on_attach = on_attach,
-  on_init = on_init,
-  capabilities = capabilities,
-}
-
-lspconfig.tailwindcss.setup {
-  settings = {
-
-    tailwindCSS = {
-      experimental = {
-        classRegex = {
-          { "cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]" },
-          { "cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)" },
+  html = {},
+  cssls = {},
+  ts_ls = {},
+  clangd = {},
+  gopls = {},
+  gradle_ls = {},
+  solidity_ls_nomicfoundation = {},
+  tailwindcss = {
+    settings = {
+      tailwindCSS = {
+        experimental = {
+          classRegex = {
+            { "cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]" },
+            { "cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)" },
+          },
         },
       },
     },
   },
+  pyright = {},
+  eslint = {},
+  jsonls = {},
 }
+
+for name, opts in pairs(servers) do
+  vim.lsp.enable(name) -- nvim v0.11.0 or above required
+  vim.lsp.config(name, opts) -- nvim v0.11.0 or above required
+end

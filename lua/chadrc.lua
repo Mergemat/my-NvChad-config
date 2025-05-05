@@ -7,6 +7,16 @@ local M = {}
 
 M.base46 = {
   theme = "poimandres",
+  hl_override = {
+    Tabline = { bg = "black" },
+    TbFill = { bg = "black" },
+    TbBufOn = { bg = "black" },
+    TbBufOff = { bg = "black" },
+    TbBufOnClose = { bg = "black" },
+    TbBufOffClose = { bg = "black" },
+    TbBufOnModified = { bg = "black" },
+    TbBufOffModified = { bg = "black" },
+  },
   transparency = true,
 }
 
