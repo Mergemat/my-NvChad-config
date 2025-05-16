@@ -20,9 +20,10 @@ map("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move line up" })
 
 map("i", "<C-j>", vim.lsp.buf.signature_help)
 
-map({ "n", "v" }, "<leader>fe", "<cmd>EslintFixAll<cr>", { desc = "Eslint fix all" })
+map({ "n", "v" }, "<leader>fe", "<cmd>LspEslintFixAll<cr>", { desc = "Eslint fix all" })
 map("x", "p", 'p:let @+=@0<CR>:let @"=@0<CR>', { desc = "Dont copy replaced text" })
 map("n", "<leader>lf", vim.diagnostic.open_float, { desc = "lsp floating diagnostics" })
+map("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "lsp hover" })
 
 vim.keymap.del("n", "<leader>wk")
 vim.keymap.del("n", "<leader>wK")
