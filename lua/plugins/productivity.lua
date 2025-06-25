@@ -71,11 +71,13 @@ return {
     opts = {
       -- add any opts here
       -- for example
-      provider = "openai",
+      provider = "openrouter",
       providers = {
-        openai = {
-          endpoint = "https://api.openai.com/v1",
-          model = "gpt-4.1-mini", -- your desired model (or use gpt-4o, etc.)
+        openrouter = {
+          __inherited_from = "openai",
+          endpoint = "https://openrouter.ai/api/v1",
+          api_key_name = "OPENROUTER_API_KEY",
+          model = "google/gemini-2.5-pro-preview",
         },
       },
     },
@@ -100,5 +102,26 @@ return {
         ft = { "markdown", "Avante" },
       },
     },
+  },
+  { "JoosepAlviste/nvim-ts-context-commentstring", event = "VeryLazy" },
+  {
+    "echasnovski/mini.comment",
+    version = "*",
+    config = function()
+      require("mini.comment").setup {
+        options = {
+          custom_commentstring = function()
+            return require("ts_context_commentstring").calculate_commentstring() or vim.bo.commentstring
+          end,
+        },
+      }
+    end,
+  },
+  {
+    "windwp/nvim-ts-autotag",
+    lazy = false,
+    config = function()
+      require("nvim-ts-autotag").setup {}
+    end,
   },
 }

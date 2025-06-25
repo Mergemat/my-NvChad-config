@@ -47,3 +47,5 @@ vim.api.nvim_create_autocmd("LspAttach", {
     delete_keymaps(args)
   end,
 })
+
+o.laststatus = 3
