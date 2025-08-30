@@ -1,29 +1,14 @@
 local options = {
   formatters_by_ft = {
     lua = { "stylua" },
-    css = { "prettierd", "prettier", stop_after_first = true },
+    css = { "biome-check", "prettierd", "prettier", stop_after_first = true },
     html = { "prettierd", "prettier", stop_after_first = true },
-    javascript = { "prettierd", "prettier", stop_after_first = true },
-    typescript = { "prettierd", "prettier", stop_after_first = true },
-    javascriptreact = { "prettierd", "prettier", stop_after_first = true },
-    typescriptreact = { "prettierd", "prettier", stop_after_first = true },
-    json = { "prettierd", "prettier", stop_after_first = true },
-    jsonc = { "prettierd", "prettier", stop_after_first = true },
-  },
-  formatters = {
-    injected = {
-      options = {
-        lang_to_formatters = {
-          json = { "prettier" },
-          jsonc = { "prettier" },
-        },
-      },
-    },
-  },
-
-  ft_parsers = {
-    json = "json",
-    jsonc = "json",
+    javascript = { "biome-check", "prettierd", "prettier", stop_after_first = true },
+    typescript = { "biome-check", "prettierd", "prettier", stop_after_first = true },
+    javascriptreact = { "biome-check", "prettierd", "prettier", stop_after_first = true },
+    typescriptreact = { "biome-check", "prettierd", "prettier", stop_after_first = true },
+    json = { "biome-check", "prettierd", "prettier", stop_after_first = true },
+    jsonc = { "biome-check", "prettierd", "prettier", stop_after_first = true },
   },
 
   -- format_on_save = {

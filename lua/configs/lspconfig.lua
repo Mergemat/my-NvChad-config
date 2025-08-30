@@ -42,6 +42,7 @@ local servers = {
   pyright = {},
   eslint = {},
   jsonls = {},
+  biome = {},
 }
 
 for name, opts in pairs(servers) do
