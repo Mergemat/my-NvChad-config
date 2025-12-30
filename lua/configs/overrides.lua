@@ -18,6 +18,7 @@ M.nvimtree = {
   },
 
   renderer = {
+    group_empty = true,
     -- highlight_opened_files = "all",
     highlight_git = true,
     icons = {
