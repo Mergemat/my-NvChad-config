@@ -1,3 +1,4 @@
+vim.env.ESLINT_D_PPID = vim.fn.getpid()
 local lint = require "lint"
 
 lint.linters_by_ft = {
