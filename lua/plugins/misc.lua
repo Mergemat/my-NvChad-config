@@ -1,5 +1,5 @@
 return {
-  { "wakatime/vim-wakatime", lazy = false },
+  { "wakatime/vim-wakatime", event = "VeryLazy" },
   --
   {
     "max397574/better-escape.nvim",

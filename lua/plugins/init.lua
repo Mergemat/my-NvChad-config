@@ -39,39 +39,31 @@ return {
   --
   {
     "nvim-treesitter/nvim-treesitter-context",
-    lazy = false,
-    enabled = true,
-    opts = { mode = "cursor", max_lines = 3 },
-    config = function()
-      require("treesitter-context").setup {
-        enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
-
-        max_lines = 4, -- How many lines the window should span. Values <= 0 mean no limit.
-        throttle = true, -- Throttles plugin updates (may improve performance)
-        patterns = { -- Match patterns for TS nodes. These get wrapped to match at word boundaries.
-          -- For all filetypes
-          -- Note that setting an entry here replaces all other patterns for this entry.
-          -- By setting the 'default' entry below, you can control which nodes you want to
-          -- appear in the context window.
-          default = {
-            "class",
-            "function",
-            "method",
-          },
-        },
-      }
-    end,
+    event = "BufReadPost",
+    opts = {
+      enable = true,
+      max_lines = 4,
+      throttle = true,
+      patterns = {
+        default = { "class", "function", "method" },
+      },
+    },
   },
   --
   {
     "folke/trouble.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
-    lazy = false,
+    cmd = { "Trouble", "TroubleToggle", "TroubleRefresh" },
+    keys = {
+      { "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", desc = "Diagnostics (Trouble)" },
+      { "<leader>xX", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", desc = "Buffer Diagnostics (Trouble)" },
+      { "<leader>xq", "<cmd>Trouble qflist toggle<cr>", desc = "Quickfix (Trouble)" },
+    },
   },
   --
   {
     "kevinhwang91/nvim-bqf",
-    lazy = false,
+    ft = "qf",
   },
   --
   {

@@ -19,19 +19,27 @@ return {
     end,
   },
 
-  --
   {
     "mbbill/undotree",
-    lazy = false,
+    cmd = "UndotreeToggle",
+    keys = {
+      { "<leader>u", "<cmd>UndotreeToggle<cr>", desc = "Toggle Undotree" },
+    },
   },
-  --
   {
     "ThePrimeagen/harpoon",
     branch = "harpoon2",
     dependencies = { "nvim-lua/plenary.nvim" },
+    keys = {
+      { "<leader>a", function() require("harpoon"):list():add() end, desc = "Harpoon add file" },
+      { "<C-e>", function() require("harpoon").ui:toggle_quick_menu(require("harpoon"):list()) end, desc = "Harpoon menu" },
+      { "<C-j>", function() require("harpoon"):list():select(1) end, desc = "Harpoon file 1" },
+      { "<C-k>", function() require("harpoon"):list():select(2) end, desc = "Harpoon file 2" },
+      { "<C-l>", function() require("harpoon"):list():select(3) end, desc = "Harpoon file 3" },
+      { "<C-;>", function() require("harpoon"):list():select(4) end, desc = "Harpoon file 4" },
+    },
     config = function()
-      local harpoon = require "harpoon"
-      harpoon:setup {}
+      require("harpoon"):setup {}
     end,
   },
   --
@@ -39,12 +47,24 @@ return {
     "folke/flash.nvim",
     event = "VeryLazy",
     opts = {},
+    keys = {
+      { "s", function() require("flash").jump() end, mode = { "n", "x", "o" }, desc = "Flash" },
+      { "S", function() require("flash").treesitter() end, mode = { "n", "x", "o" }, desc = "Flash Treesitter" },
+      { "r", function() require("flash").remote() end, mode = "o", desc = "Remote Flash" },
+      { "R", function() require("flash").treesitter_search() end, mode = { "o", "x" }, desc = "Treesitter Search" },
+      { "<c-s>", function() require("flash").toggle() end, mode = "c", desc = "Toggle Flash Search" },
+    },
   },
 
-  { "JoosepAlviste/nvim-ts-context-commentstring", event = "VeryLazy" },
+  {
+    "JoosepAlviste/nvim-ts-context-commentstring",
+    lazy = true,
+    opts = { enable_autocmd = false },
+  },
   {
     "echasnovski/mini.comment",
-    version = "*",
+    event = "VeryLazy",
+    dependencies = { "JoosepAlviste/nvim-ts-context-commentstring" },
     config = function()
       require("mini.comment").setup {
         options = {
@@ -57,55 +77,28 @@ return {
   },
   {
     "windwp/nvim-ts-autotag",
-    lazy = false,
-    config = function()
-      require("nvim-ts-autotag").setup {}
-    end,
+    event = "InsertEnter",
+    ft = { "html", "javascript", "typescript", "javascriptreact", "typescriptreact", "svelte", "vue", "tsx", "jsx", "xml", "markdown" },
+    opts = {},
   },
 
   {
     "NickvanDyke/opencode.nvim",
     dependencies = {
-      -- Recommended for `ask()` and `select()`.
-      -- Required for `snacks` provider.
-      ---@module 'snacks' <- Loads `snacks.nvim` types for configuration intellisense.
       { "folke/snacks.nvim", opts = { input = {}, picker = {}, terminal = {} } },
     },
+    keys = {
+      { "<C-a>", function() require("opencode").ask("@this: ", { submit = true }) end, mode = { "n", "x" }, desc = "Ask opencode" },
+      { "<C-x>", function() require("opencode").select() end, mode = { "n", "x" }, desc = "Execute opencode action" },
+      { "<C-.>", function() require("opencode").toggle() end, mode = { "n", "t" }, desc = "Toggle opencode" },
+      { "go", function() return require("opencode").operator "@this " end, mode = { "n", "x" }, expr = true, desc = "Add range to opencode" },
+      { "goo", function() return require("opencode").operator "@this " .. "_" end, expr = true, desc = "Add line to opencode" },
+      { "<S-C-u>", function() require("opencode").command "session.half.page.up" end, desc = "opencode half page up" },
+      { "<S-C-d>", function() require("opencode").command "session.half.page.down" end, desc = "opencode half page down" },
+    },
     config = function()
-      ---@type opencode.Opts
-      vim.g.opencode_opts = {
-        -- Your configuration, if any — see `lua/opencode/config.lua`, or "goto definition".
-      }
-
-      -- Required for `opts.events.reload`.
+      vim.g.opencode_opts = {}
       vim.o.autoread = true
-
-      -- Recommended/example keymaps.
-      vim.keymap.set({ "n", "x" }, "<C-a>", function()
-        require("opencode").ask("@this: ", { submit = true })
-      end, { desc = "Ask opencode" })
-      vim.keymap.set({ "n", "x" }, "<C-x>", function()
-        require("opencode").select()
-      end, { desc = "Execute opencode action…" })
-      vim.keymap.set({ "n", "t" }, "<C-.>", function()
-        require("opencode").toggle()
-      end, { desc = "Toggle opencode" })
-
-      vim.keymap.set({ "n", "x" }, "go", function()
-        return require("opencode").operator "@this "
-      end, { expr = true, desc = "Add range to opencode" })
-      vim.keymap.set("n", "goo", function()
-        return require("opencode").operator "@this " .. "_"
-      end, { expr = true, desc = "Add line to opencode" })
-
-      vim.keymap.set("n", "<S-C-u>", function()
-        require("opencode").command "session.half.page.up"
-      end, { desc = "opencode half page up" })
-      vim.keymap.set("n", "<S-C-d>", function()
-        require("opencode").command "session.half.page.down"
-      end, { desc = "opencode half page down" })
-
-      -- You may want these if you stick with the opinionated "<C-a>" and "<C-x>" above — otherwise consider "<leader>o".
       vim.keymap.set("n", "+", "<C-a>", { desc = "Increment", noremap = true })
       vim.keymap.set("n", "-", "<C-x>", { desc = "Decrement", noremap = true })
     end,

@@ -1,13 +1,19 @@
 require "nvchad.options"
 
--- add yours here!
-
 local o = vim.o
 local opt = vim.opt
 
-o.cursorlineopt = "both" -- to enable cursorline!
+-- Performance optimizations
+o.updatetime = 200           -- Faster CursorHold events (default 4000ms)
+o.timeoutlen = 300           -- Faster key sequence completion (default 1000ms)
+o.redrawtime = 1500          -- Time for syntax highlighting (default 2000ms)
+o.synmaxcol = 240            -- Only highlight first 240 columns (perf for long lines)
+
+-- UI settings
+o.cursorlineopt = "both"
 opt.relativenumber = true
 o.mouse = ""
+o.lazyredraw = false         -- Don't set true (breaks with noice/notify)
 
 vim.api.nvim_create_autocmd("TextYankPost", {
   callback = function()
