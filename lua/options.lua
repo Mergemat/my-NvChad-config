@@ -4,16 +4,23 @@ local o = vim.o
 local opt = vim.opt
 
 -- Performance optimizations
-o.updatetime = 200           -- Faster CursorHold events (default 4000ms)
-o.timeoutlen = 300           -- Faster key sequence completion (default 1000ms)
-o.redrawtime = 1500          -- Time for syntax highlighting (default 2000ms)
-o.synmaxcol = 240            -- Only highlight first 240 columns (perf for long lines)
+o.updatetime = 200
+o.timeoutlen = 300
+o.redrawtime = 1500
+o.synmaxcol = 240
 
--- UI settings
+-- Visual/UI settings
 o.cursorlineopt = "both"
 opt.relativenumber = true
 o.mouse = ""
-o.lazyredraw = false         -- Don't set true (breaks with noice/notify)
+o.pumblend = 0               -- No transparency
+o.winblend = 0               -- No transparency
+o.scrolloff = 8
+o.sidescrolloff = 8
+o.signcolumn = "yes"
+o.wrap = false
+o.linebreak = true
+o.showmode = false
 
 vim.api.nvim_create_autocmd("TextYankPost", {
   callback = function()
@@ -55,3 +62,24 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 o.laststatus = 3
+
+-- Global LSP floating window config (hover, signature, diagnostics)
+local border = {
+  { "╭", "FloatBorder" },
+  { "─", "FloatBorder" },
+  { "╮", "FloatBorder" },
+  { "│", "FloatBorder" },
+  { "╯", "FloatBorder" },
+  { "─", "FloatBorder" },
+  { "╰", "FloatBorder" },
+  { "│", "FloatBorder" },
+}
+
+local orig_open_floating_preview = vim.lsp.util.open_floating_preview
+---@diagnostic disable-next-line: duplicate-set-field
+function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+  opts = opts or {}
+  opts.border = opts.border or border
+  opts.max_width = opts.max_width or 80
+  return orig_open_floating_preview(contents, syntax, opts, ...)
+end
