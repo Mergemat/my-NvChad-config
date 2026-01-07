@@ -68,6 +68,19 @@ return {
   --
   {
     "nvim-tree/nvim-tree.lua",
-    opts = overrides.nvimtree,
+    enabled = false,
+  },
+  {
+    "stevearc/oil.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    cmd = "Oil",
+    keys = {
+      { "-", "<cmd>Oil<cr>", desc = "Open parent directory" },
+    },
+    opts = {
+      view_options = {
+        show_hidden = true,
+      },
+    },
   },
 }
