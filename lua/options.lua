@@ -18,8 +18,9 @@ o.winblend = 0               -- No transparency
 o.scrolloff = 8
 o.sidescrolloff = 8
 o.signcolumn = "yes"
-o.wrap = false
+o.wrap = true
 o.linebreak = true
+o.breakindent = true
 o.showmode = false
 
 vim.api.nvim_create_autocmd("TextYankPost", {

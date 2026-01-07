@@ -1,86 +1,20 @@
-local overrides = require "configs.overrides"
+-- Plugin loader: imports all plugin modules
+-- Each module returns a table of plugin specs
 
-return {
-  {
-    "stevearc/conform.nvim",
-    -- event = 'BufWritePre', -- uncomment for format on save
-    opts = require "configs.conform",
-  },
+local function merge(...)
+  local result = {}
+  for _, tbl in ipairs({ ... }) do
+    for _, v in ipairs(tbl) do
+      result[#result + 1] = v
+    end
+  end
+  return result
+end
 
-  -- These are some examples, uncomment them if you want to see them work!
-  {
-    "neovim/nvim-lspconfig",
-    config = function()
-      require "configs.lspconfig"
-    end,
-  },
-  --
-  {
-    "nvim-treesitter/nvim-treesitter",
-    opts = {
-      ensure_installed = {
-        "vim",
-        "lua",
-        "vimdoc",
-        "html",
-        "css",
-        "javascript",
-        "typescript",
-        "tsx",
-        "c",
-        "markdown",
-        "markdown_inline",
-        "prisma",
-        "go",
-        "solidity",
-      },
-    },
-  },
-  --
-  {
-    "nvim-treesitter/nvim-treesitter-context",
-    event = "BufReadPost",
-    opts = {
-      enable = true,
-      max_lines = 4,
-      throttle = true,
-      patterns = {
-        default = { "class", "function", "method" },
-      },
-    },
-  },
-  --
-  {
-    "folke/trouble.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-    cmd = { "Trouble", "TroubleToggle", "TroubleRefresh" },
-    keys = {
-      { "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", desc = "Diagnostics (Trouble)" },
-      { "<leader>xX", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", desc = "Buffer Diagnostics (Trouble)" },
-      { "<leader>xq", "<cmd>Trouble qflist toggle<cr>", desc = "Quickfix (Trouble)" },
-    },
-  },
-  --
-  {
-    "kevinhwang91/nvim-bqf",
-    ft = "qf",
-  },
-  --
-  {
-    "nvim-tree/nvim-tree.lua",
-    enabled = false,
-  },
-  {
-    "stevearc/oil.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-    cmd = "Oil",
-    keys = {
-      { "-", "<cmd>Oil<cr>", desc = "Open parent directory" },
-    },
-    opts = {
-      view_options = {
-        show_hidden = true,
-      },
-    },
-  },
-}
+return merge(
+  require "plugins.editor",
+  require "plugins.navigation",
+  require "plugins.ui",
+  require "plugins.coding",
+  require "plugins.misc"
+)

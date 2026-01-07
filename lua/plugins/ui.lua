@@ -1,15 +1,5 @@
+-- UI enhancements: colors, input, diagnostics display
 return {
-  -- Highlight colors inline
-  {
-    "brenoprata10/nvim-highlight-colors",
-    event = "BufReadPost",
-    opts = {
-      render = "virtual",
-      virtual_symbol = "",
-      enable_tailwind = true,
-    },
-  },
-
   -- Better input/select UI
   {
     "stevearc/dressing.nvim",

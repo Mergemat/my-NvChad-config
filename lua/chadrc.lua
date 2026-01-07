@@ -54,9 +54,6 @@ M.ui = {
     separator_style = "round",
   },
   cmp = {
-    format_colors = {
-      tailwind = true,
-    },
     icons_left = true,
     icons = true,
     style = "atom_colored",

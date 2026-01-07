@@ -1,6 +1,9 @@
+-- Miscellaneous plugins: tracking, escape handling
 return {
+  -- Time tracking
   { "wakatime/vim-wakatime", event = "VeryLazy" },
-  --
+
+  -- Better escape from insert mode
   {
     "max397574/better-escape.nvim",
     event = "InsertEnter",
@@ -8,7 +11,8 @@ return {
       require("better_escape").setup()
     end,
   },
-  --
+
+  -- Remind to use relative jumps
   {
     "jk-spam-reminder",
     dir = vim.fn.stdpath("config") .. "/lua/custom/jk-spam-reminder",
