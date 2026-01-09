@@ -3,7 +3,7 @@ return {
   -- Disable default tree
   {
     "nvim-tree/nvim-tree.lua",
-    enabled = false,
+    opts = require("configs.overrides").nvimtree,
   },
 
   -- File explorer as buffer
@@ -27,12 +27,48 @@ return {
     branch = "harpoon2",
     dependencies = { "nvim-lua/plenary.nvim" },
     keys = {
-      { "<leader>a", function() require("harpoon"):list():add() end, desc = "Harpoon add file" },
-      { "<C-e>", function() require("harpoon").ui:toggle_quick_menu(require("harpoon"):list()) end, desc = "Harpoon menu" },
-      { "<C-j>", function() require("harpoon"):list():select(1) end, desc = "Harpoon file 1" },
-      { "<C-k>", function() require("harpoon"):list():select(2) end, desc = "Harpoon file 2" },
-      { "<C-l>", function() require("harpoon"):list():select(3) end, desc = "Harpoon file 3" },
-      { "<C-;>", function() require("harpoon"):list():select(4) end, desc = "Harpoon file 4" },
+      {
+        "<leader>a",
+        function()
+          require("harpoon"):list():add()
+        end,
+        desc = "Harpoon add file",
+      },
+      {
+        "<C-e>",
+        function()
+          require("harpoon").ui:toggle_quick_menu(require("harpoon"):list())
+        end,
+        desc = "Harpoon menu",
+      },
+      {
+        "<C-j>",
+        function()
+          require("harpoon"):list():select(1)
+        end,
+        desc = "Harpoon file 1",
+      },
+      {
+        "<C-k>",
+        function()
+          require("harpoon"):list():select(2)
+        end,
+        desc = "Harpoon file 2",
+      },
+      {
+        "<C-l>",
+        function()
+          require("harpoon"):list():select(3)
+        end,
+        desc = "Harpoon file 3",
+      },
+      {
+        "<C-;>",
+        function()
+          require("harpoon"):list():select(4)
+        end,
+        desc = "Harpoon file 4",
+      },
     },
     config = function()
       require("harpoon"):setup {}
@@ -45,11 +81,46 @@ return {
     event = "VeryLazy",
     opts = {},
     keys = {
-      { "s", function() require("flash").jump() end, mode = { "n", "x", "o" }, desc = "Flash" },
-      { "S", function() require("flash").treesitter() end, mode = { "n", "x", "o" }, desc = "Flash Treesitter" },
-      { "r", function() require("flash").remote() end, mode = "o", desc = "Remote Flash" },
-      { "R", function() require("flash").treesitter_search() end, mode = { "o", "x" }, desc = "Treesitter Search" },
-      { "<c-s>", function() require("flash").toggle() end, mode = "c", desc = "Toggle Flash Search" },
+      {
+        "s",
+        function()
+          require("flash").jump()
+        end,
+        mode = { "n", "x", "o" },
+        desc = "Flash",
+      },
+      {
+        "S",
+        function()
+          require("flash").treesitter()
+        end,
+        mode = { "n", "x", "o" },
+        desc = "Flash Treesitter",
+      },
+      {
+        "r",
+        function()
+          require("flash").remote()
+        end,
+        mode = "o",
+        desc = "Remote Flash",
+      },
+      {
+        "R",
+        function()
+          require("flash").treesitter_search()
+        end,
+        mode = { "o", "x" },
+        desc = "Treesitter Search",
+      },
+      {
+        "<c-s>",
+        function()
+          require("flash").toggle()
+        end,
+        mode = "c",
+        desc = "Toggle Flash Search",
+      },
     },
   },
 
