@@ -42,10 +42,18 @@ local servers = {
   pyright = {},
   eslint = {},
   jsonls = {},
-  biome = {},
+  biome = {
+    root_dir = function(bufnr, on_dir)
+      local root = vim.fs.root(bufnr, { "biome.json", "biome.jsonc" })
+      if root then
+        on_dir(root)
+      end
+    end,
+  },
+
 }
 
 for name, opts in pairs(servers) do
-  vim.lsp.enable(name) -- nvim v0.11.0 or above required
   vim.lsp.config(name, opts) -- nvim v0.11.0 or above required
+  vim.lsp.enable(name) -- nvim v0.11.0 or above required
 end

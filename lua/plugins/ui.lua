@@ -62,9 +62,20 @@ return {
       },
     },
     keys = {
-      { "]t", function() require("todo-comments").jump_next() end, desc = "Next todo comment" },
-      { "[t", function() require("todo-comments").jump_prev() end, desc = "Prev todo comment" },
-      { "<leader>xt", "<cmd>TodoTrouble<cr>", desc = "Todo (Trouble)" },
+      {
+        "]t",
+        function()
+          require("todo-comments").jump_next()
+        end,
+        desc = "Next todo comment",
+      },
+      {
+        "[t",
+        function()
+          require("todo-comments").jump_prev()
+        end,
+        desc = "Prev todo comment",
+      },
       { "<leader>ft", "<cmd>TodoTelescope<cr>", desc = "Find todos" },
     },
   },
@@ -84,7 +95,7 @@ return {
     },
     config = function(_, opts)
       require("tiny-inline-diagnostic").setup(opts)
-      vim.diagnostic.config({ virtual_text = false })
+      vim.diagnostic.config { virtual_text = false }
     end,
   },
 }

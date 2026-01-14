@@ -7,6 +7,15 @@ return {
     opts = require "configs.conform",
   },
 
+  -- Linter
+  {
+    "mfussenegger/nvim-lint",
+    event = { "BufReadPre", "BufNewFile" },
+    config = function()
+      require "configs.lint"
+    end,
+  },
+
   -- LSP configuration
   {
     "neovim/nvim-lspconfig",
