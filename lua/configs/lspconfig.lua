@@ -19,10 +19,37 @@ local function on_attach(_, bufnr)
   map("n", "gr", vim.lsp.buf.references, opts "Show references")
 end
 
+-- Helper to check if .tsgo marker exists in project root
+local function has_tsgo_marker(bufnr)
+  return vim.fs.root(bufnr, { ".tsgo" }) ~= nil
+end
+
 local servers = {
   html = {},
   cssls = {},
-  ts_ls = {},
+  ts_ls = {
+    root_dir = function(bufnr, on_dir)
+      -- Skip ts_ls if .tsgo marker exists (tsgo will handle it)
+      if has_tsgo_marker(bufnr) then
+        return
+      end
+      local root = vim.fs.root(bufnr, { "tsconfig.json", "jsconfig.json", "package.json", ".git" })
+      if root then
+        on_dir(root)
+      end
+    end,
+  },
+  tsgo = {
+    cmd = { "tsgo", "--lsp", "--stdio" },
+    filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
+    root_dir = function(bufnr, on_dir)
+      -- Only enable if .tsgo marker file exists
+      local root = vim.fs.root(bufnr, { ".tsgo" })
+      if root then
+        on_dir(root)
+      end
+    end,
+  },
   clangd = {},
   gopls = {},
   gradle_ls = {},

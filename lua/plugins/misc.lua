@@ -11,4 +11,9 @@ return {
       require("better_escape").setup()
     end,
   },
+  {
+    "ThePrimeagen/vim-be-good",
+    cmd = "VimBeGood",
+  },
+  { "vuciv/golf", cmd = "Golf" },
 }
