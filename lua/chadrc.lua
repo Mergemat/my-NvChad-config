@@ -2,6 +2,7 @@
 
 ---@type ChadrcConfig
 local M = {}
+local tools = require "configs.tools"
 
 M.base46 = {
   theme = "poimandres",
@@ -105,31 +106,7 @@ M.nvdash = {
 }
 
 M.mason = {
-  pkgs = {
-
-    "lua-language-server",
-    "stylua",
-    "pyright",
-    -- web dev stuff
-    "css-lsp",
-    "html-lsp",
-    "typescript-language-server",
-    "eslint_d",
-    "oxlint",
-    "deno",
-    "prettier",
-    "biome",
-    "solhint",
-    "solidity-ls",
-    "nomicfoundation-solidity-language-server",
-    "eslint-lsp",
-    "jsonls",
-    "prisma-language-server",
-
-    -- c/cpp stuff
-    "clangd",
-    "clang-format",
-  },
+  pkgs = tools.mason_packages,
 }
 
 M.colorify = {

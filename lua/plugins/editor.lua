@@ -1,3 +1,5 @@
+local tools = require "configs.tools"
+
 -- Core editing plugins: LSP, treesitter, formatting, comments
 return {
   -- Formatter
@@ -30,23 +32,8 @@ return {
     branch = "main",
     build = ":TSUpdate",
     opts = {
-      ensure_installed = {
-        "vim",
-        "lua",
-        "luau",
-        "vimdoc",
-        "html",
-        "css",
-        "javascript",
-        "typescript",
-        "tsx",
-        "c",
-        "markdown",
-        "markdown_inline",
-        "prisma",
-        "go",
-        "solidity",
-      },
+      ensure_installed = tools.treesitter_parsers,
+      auto_install = true,
     },
   },
 

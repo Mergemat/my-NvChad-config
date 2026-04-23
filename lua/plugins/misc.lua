@@ -1,5 +1,18 @@
+local tools = require "configs.tools"
+
 -- Miscellaneous plugins: tracking, escape handling
 return {
+  {
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
+    event = "VeryLazy",
+    dependencies = { "mason.nvim" },
+    opts = {
+      ensure_installed = tools.mason_packages,
+      run_on_start = true,
+      start_delay = 0,
+    },
+  },
+
   -- Time tracking
   { "wakatime/vim-wakatime", event = "VeryLazy" },
 
