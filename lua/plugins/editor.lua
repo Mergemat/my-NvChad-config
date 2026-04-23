@@ -27,10 +27,13 @@ return {
   -- Syntax highlighting
   {
     "nvim-treesitter/nvim-treesitter",
+    branch = "main",
+    build = ":TSUpdate",
     opts = {
       ensure_installed = {
         "vim",
         "lua",
+        "luau",
         "vimdoc",
         "html",
         "css",
@@ -86,7 +89,34 @@ return {
   {
     "windwp/nvim-ts-autotag",
     event = "InsertEnter",
-    ft = { "html", "javascript", "typescript", "javascriptreact", "typescriptreact", "svelte", "vue", "tsx", "jsx", "xml", "markdown" },
+    ft = {
+      "html",
+      "javascript",
+      "typescript",
+      "javascriptreact",
+      "typescriptreact",
+      "svelte",
+      "vue",
+      "tsx",
+      "jsx",
+      "xml",
+      "markdown",
+    },
     opts = {},
+  },
+
+  {
+    lazy = false,
+    "lopi-py/luau-lsp.nvim",
+    config = function()
+      require("luau-lsp").setup {
+        platform = {
+          type = "roblox",
+        },
+        types = {
+          roblox_security_level = "PluginSecurity",
+        },
+      }
+    end,
   },
 }

@@ -29,6 +29,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   end,
 })
 vim.api.nvim_set_hl(0, "CmpItemKindSupermaven", { fg = "#6CC644" })
+vim.api.nvim_set_hl(0, "BlinkCmpKindSuperMaven", { fg = "#6CC644" })
 
 local function keymap_exists_for_buffer(mode, lhs, buf)
   for _, keymap in ipairs(vim.api.nvim_buf_get_keymap(buf, mode)) do

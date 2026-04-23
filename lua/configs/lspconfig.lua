@@ -27,6 +27,21 @@ end
 local servers = {
   html = {},
   cssls = {},
+  luau_lsp = {
+    cmd = {
+      vim.fn.stdpath("data") .. "/mason/packages/luau-lsp/luau-lsp",
+      "lsp",
+      "--definitions=@roblox=" .. vim.fn.expand("~/.local/share/luau-lsp/globalTypes.d.luau"),
+      "--docs=" .. vim.fn.expand("~/.local/share/luau-lsp/en-us.json"),
+    },
+    filetypes = { "luau" },
+    root_dir = function(bufnr, on_dir)
+      local root = vim.fs.root(bufnr, { "default.project.json", ".luaurc", ".luau", ".git" })
+      if root then
+        on_dir(root)
+      end
+    end,
+  },
   ts_ls = {
     root_dir = function(bufnr, on_dir)
       -- Skip ts_ls if .tsgo marker exists (tsgo will handle it)
