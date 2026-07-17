@@ -1,5 +1,15 @@
 -- Navigation plugins: file explorer, jump motions, diagnostics list
 return {
+  -- Fast file and content search
+  {
+    "dmtrKovalenko/fff.nvim",
+    build = function()
+      require("fff.download").download_or_build_binary()
+    end,
+    lazy = false,
+    opts = {},
+  },
+
   -- Disable default tree
   {
     "nvim-tree/nvim-tree.lua",

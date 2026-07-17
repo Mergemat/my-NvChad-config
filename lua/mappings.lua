@@ -11,6 +11,21 @@ map("i", "jk", "<ESC>")
 
 map("n", "<leader>w", "<cmd>w<CR>", { desc = "Save file" })
 
+-- Prefer fff for file and content search. Telescope remains available for
+-- pickers fff does not provide, such as buffers, help tags, and old files.
+map("n", "<leader>ff", function()
+  require("fff").find_files()
+end, { desc = "FFF find files" })
+map("n", "<leader>fg", function()
+  require("fff").live_grep()
+end, { desc = "FFF live grep" })
+map("n", "<leader>fz", function()
+  require("fff").live_grep { grep = { modes = { "fuzzy", "plain" } } }
+end, { desc = "FFF fuzzy grep" })
+map({ "n", "x" }, "<leader>fw", function()
+  require("fff").live_grep_under_cursor()
+end, { desc = "FFF search word or selection" })
+
 -- Centered navigation
 map("n", "<C-u>", "<C-u>zz", { desc = "Half page up (centered)" })
 map("n", "<C-d>", "<C-d>zz", { desc = "Half page down (centered)" })

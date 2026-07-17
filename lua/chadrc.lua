@@ -83,9 +83,9 @@ M.nvdash = {
     "",
   },
   buttons = {
-    { txt = "  Find File", keys = "f f", cmd = "Telescope find_files" },
+    { txt = "  Find File", keys = "f f", cmd = ":lua require('fff').find_files()" },
     { txt = "  Recent Files", keys = "f o", cmd = "Telescope oldfiles" },
-    { txt = "󰈭  Find Word", keys = "f w", cmd = "Telescope live_grep" },
+    { txt = "󰈭  Live Grep", keys = "f g", cmd = ":lua require('fff').live_grep()" },
     { txt = "󱥚  Themes", keys = "t h", cmd = ":lua require('nvchad.themes').open()" },
     { txt = "  Mappings", keys = "c h", cmd = "NvCheatsheet" },
 
