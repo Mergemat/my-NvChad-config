@@ -4,7 +4,6 @@ vim.g.mapleader = " "
 -- bootstrap lazy and all plugins
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
 
-
 if not vim.uv.fs_stat(lazypath) then
   local repo = "https://github.com/folke/lazy.nvim.git"
   vim.fn.system { "git", "clone", "--filter=blob:none", repo, "--branch=stable", lazypath }
@@ -37,4 +36,7 @@ require "nvchad.autocmds"
 
 vim.schedule(function()
   require "mappings"
+  -- After mappings, so its keys can fall back to NvChad's insert-mode <C-e>/<C-l>.
+  require("codex_complete").setup()
 end)
+
